@@ -1,0 +1,6 @@
+{
+  "name": "AI Voice Studio",
+  "description": "Production-ready Android application in Java & XML for AI voice generation with MVVM architecture, Material Design 3, provider abstractions, and GitHub CI/CD.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

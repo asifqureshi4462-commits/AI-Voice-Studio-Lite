@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AI Voice Studio</string>
+    <string name="tagline">Next-Gen AI Speech &amp; Voice Generator</string>
+    
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_generate">Generator</string>
+    <string name="nav_history">History</string>
+    <string name="nav_downloads">Downloads</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Generator -->
+    <string name="btn_generate">Generate Speech</string>
+    <string name="btn_preview">Preview Sample</string>
+    <string name="btn_download">Download Audio</string>
+    <string name="btn_share">Share Audio</string>
+    <string name="hint_text_input">Enter or paste the script you want to convert into high quality AI voice speech...</string>
+    <string name="title_characters">Character Selection</string>
+    <string name="title_languages">Language</string>
+    <string name="title_voice_style">Voice Emotion &amp; Style</string>
+    <string name="speed_label">Playback Speed</string>
+    <string name="pitch_label">Voice Pitch</string>
+
+    <!-- Auth -->
+    <string name="title_login">Welcome Back</string>
+    <string name="title_signup">Create Studio Account</string>
+    <string name="hint_email">Email Address</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_name">Full Name</string>
+    <string name="btn_login">Sign In</string>
+    <string name="btn_signup">Register Account</string>
+
+    <!-- Subscription & Settings -->
+    <string name="title_pro_member">Studio Pro Access</string>
+    <string name="title_api_settings">AI Provider Engine Settings</string>
+    <string name="title_cache">Cache &amp; Storage</string>
+    <string name="btn_clear_cache">Clear Storage Cache</string>
+</resources>

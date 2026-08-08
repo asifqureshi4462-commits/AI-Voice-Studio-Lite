@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base Application Theme -->
+    <style name="Theme.AIVoiceStudio" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/primary_violet</item>
+        <item name="colorPrimaryVariant">@color/primary_violet_dark</item>
+        <item name="colorSecondary">@color/accent_cyan</item>
+        <item name="android:statusBarColor">@color/bg_dark_void</item>
+        <item name="android:navigationBarColor">@color/bg_dark_void</item>
+        <item name="android:windowBackground">@color/bg_dark_void</item>
+    </style>
+
+    <!-- Glassmorphic Card Style -->
+    <style name="Widget.AIVoiceStudio.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@color/bg_card_glass</item>
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">2dp</item>
+    </style>
+</resources>
