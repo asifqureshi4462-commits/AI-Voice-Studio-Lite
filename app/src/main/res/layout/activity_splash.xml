@@ -17,7 +17,7 @@
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:contentDescription="@string/app_name"
-            android:src="@android:drawable/ic_btn_speak_now" />
+            android:src="@drawable/ic_app_logo" />
 
         <TextView
             android:layout_width="wrap_content"

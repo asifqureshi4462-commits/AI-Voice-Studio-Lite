@@ -12,7 +12,7 @@
         android:padding="16dp">
 
         <!-- Top Header Card -->
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="@color/bg_card_glass"
@@ -21,6 +21,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_gradient_header"
                 android:orientation="vertical"
                 android:padding="20dp">
 
@@ -124,7 +125,7 @@
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- Quick Generator Banner -->
         <Button
@@ -137,7 +138,7 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:cornerRadius="14dp" />
+            app:cornerRadius="28dp" />
 
         <!-- Category Filters -->
         <TextView

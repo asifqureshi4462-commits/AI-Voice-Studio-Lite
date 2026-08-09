@@ -28,7 +28,7 @@
             android:textSize="12sp" />
 
         <!-- Text Input Card -->
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -79,7 +79,7 @@
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- Character Selection -->
         <TextView
@@ -234,7 +234,7 @@
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:cornerRadius="14dp" />
+            app:cornerRadius="28dp" />
 
     </LinearLayout>
 

@@ -11,7 +11,7 @@
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:contentDescription="@string/app_name"
-        android:src="@android:drawable/ic_btn_speak_now" />
+        android:src="@drawable/ic_app_logo" />
 
     <TextView
         android:id="@+id/tvAuthTitle"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardStyleContainer"
     android:layout_width="130dp"
@@ -7,7 +7,7 @@
     android:layout_margin="4dp"
     android:clickable="true"
     android:focusable="true"
-    app:cardBackgroundColor="@color/bg_card_glass"
+    app:cardBackgroundColor="@color/selector_card_bg"
     app:cardCornerRadius="12dp">
 
     <LinearLayout
@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Neutral"
-            android:textColor="@color/text_primary"
+            android:textColor="@color/selector_card_text"
             android:textSize="13sp"
             android:textStyle="bold" />
 
@@ -38,4 +38,4 @@
 
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
