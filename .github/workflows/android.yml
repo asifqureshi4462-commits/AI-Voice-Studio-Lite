@@ -25,44 +25,37 @@ jobs:
       - name: Grant Execute Permission for Gradlew
         run: chmod +x gradlew
 
-      - name: Ensure Valid Gradle Wrapper JAR
+      - name: Ensure Valid Gradle Wrapper Jar
         run: |
           mkdir -p gradle/wrapper
           JAR_PATH="gradle/wrapper/gradle-wrapper.jar"
-          if [ ! -f "$JAR_PATH" ] || [ $(wc -c < "$JAR_PATH") -lt 10000 ]; then
-            echo "Downloading valid Gradle Wrapper JAR..."
-            curl -sSL -o "$JAR_PATH" https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar
+          NEEDS_DOWNLOAD=0
+          if [ ! -s "$JAR_PATH" ]; then
+            echo "gradle-wrapper.jar missing or empty."
+            NEEDS_DOWNLOAD=1
+          elif ! unzip -t "$JAR_PATH" > /dev/null 2>&1; then
+            echo "gradle-wrapper.jar exists but is corrupted (fails zip integrity check)."
+            NEEDS_DOWNLOAD=1
           fi
-          echo "Gradle Wrapper JAR size: $(wc -c < "$JAR_PATH") bytes"
+
+          if [ "$NEEDS_DOWNLOAD" = "1" ]; then
+            echo "Downloading a fresh, valid gradle-wrapper.jar..."
+            curl -fsSL -o "$JAR_PATH" https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar
+            if ! unzip -t "$JAR_PATH" > /dev/null 2>&1; then
+              echo "ERROR: Downloaded gradle-wrapper.jar is still invalid."
+              exit 1
+            fi
+            echo "gradle-wrapper.jar is now valid."
+          else
+            echo "Existing gradle-wrapper.jar is valid, keeping it."
+          fi
+          echo "Final gradle-wrapper.jar size: $(wc -c < "$JAR_PATH") bytes"
 
       - name: Verify Gradle Version
         run: ./gradlew --version
 
-      - name: Print Build Diagnostics & UI Resource Integrity
-        run: |
-          echo "================ BUILD DIAGNOSTICS ================"
-          echo "Commit SHA      : ${{ github.sha }}"
-          echo "Branch / Ref    : ${{ github.ref }}"
-          echo "Workflow Run    : ${{ github.run_number }}"
-          echo "Java Version    :"
-          java -version
-          echo "Gradle Version  :"
-          ./gradlew --version | grep -E "Gradle|JVM|OS"
-          echo "Build Variant   : Release (assembleRelease)"
-          echo "================ UI RESOURCE INTEGRITY ================"
-          echo "Layout files in app/src/main/res/layout:"
-          ls -la app/src/main/res/layout/ 2>/dev/null || echo "No layout dir"
-          echo "Values files in app/src/main/res/values:"
-          ls -la app/src/main/res/values/ 2>/dev/null || echo "No values dir"
-          echo "Assets files in app/src/main/assets:"
-          ls -la app/src/main/assets/ 2>/dev/null || echo "No assets dir"
-          echo "Checking for release/debug resource overrides:"
-          ls -la app/src/release/res/ 2>/dev/null || echo "No release resource overrides found."
-          ls -la app/src/debug/res/ 2>/dev/null || echo "No debug resource overrides found."
-          echo "======================================================="
-
-      - name: Clean & Build Android Release APK
-        run: ./gradlew clean assembleRelease --stacktrace
+      - name: Build Android Release APK
+        run: ./gradlew assembleRelease --stacktrace
 
       - name: Upload Release APK Artifact
         uses: actions/upload-artifact@v4
