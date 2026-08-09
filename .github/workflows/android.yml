@@ -26,23 +26,23 @@ jobs:
         run: chmod +x gradlew
 
       - name: Ensure Valid Gradle Wrapper JAR
-  run: |
-    mkdir -p gradle/wrapper
-    JAR_PATH="gradle/wrapper/gradle-wrapper.jar"
-    
-    # Download from official Gradle distribution
-    echo "Downloading valid Gradle Wrapper JAR (v8.5.0)..."
-    curl -sSL -o "$JAR_PATH" https://services.gradle.org/distributions/gradle-8.5.0-wrapper.jar
-    
-    # Verify the JAR file size
-    JAR_SIZE=$(wc -c < "$JAR_PATH")
-    echo "Gradle Wrapper JAR size: $JAR_SIZE bytes"
-    
-    if [ "$JAR_SIZE" -lt 50000 ]; then
-      echo "ERROR: Downloaded JAR is too small. Download may have failed."
-      exit 1
-    fi
-    echo "✓ Gradle Wrapper JAR validated successfully"
+        run: |
+          mkdir -p gradle/wrapper
+          JAR_PATH="gradle/wrapper/gradle-wrapper.jar"
+          
+          # Download from official Gradle distribution
+          echo "Downloading valid Gradle Wrapper JAR (v8.5.0)..."
+          curl -sSL -o "$JAR_PATH" https://services.gradle.org/distributions/gradle-8.5.0-wrapper.jar
+          
+          # Verify the JAR file size
+          JAR_SIZE=$(wc -c < "$JAR_PATH")
+          echo "Gradle Wrapper JAR size: $JAR_SIZE bytes"
+          
+          if [ "$JAR_SIZE" -lt 50000 ]; then
+            echo "ERROR: Downloaded JAR is too small. Download may have failed."
+            exit 1
+          fi
+          echo "✓ Gradle Wrapper JAR validated successfully"
 
       - name: Verify Gradle Version
         run: ./gradlew --version
