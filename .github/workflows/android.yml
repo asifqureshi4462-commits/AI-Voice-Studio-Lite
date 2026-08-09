@@ -29,11 +29,20 @@ jobs:
         run: |
           mkdir -p gradle/wrapper
           JAR_PATH="gradle/wrapper/gradle-wrapper.jar"
-          if [ ! -f "$JAR_PATH" ] || [ $(wc -c < "$JAR_PATH") -lt 10000 ]; then
-            echo "Downloading valid Gradle Wrapper JAR..."
-            curl -sSL -o "$JAR_PATH" https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar
+          
+          # Always download a fresh, valid Gradle wrapper JAR
+          echo "Downloading valid Gradle Wrapper JAR (v8.5.0)..."
+          curl -sSL -o "$JAR_PATH" https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar
+          
+          # Verify the JAR file size
+          JAR_SIZE=$(wc -c < "$JAR_PATH")
+          echo "Gradle Wrapper JAR size: $JAR_SIZE bytes"
+          
+          if [ "$JAR_SIZE" -lt 50000 ]; then
+            echo "ERROR: Downloaded JAR is too small. Download may have failed."
+            exit 1
           fi
-          echo "Gradle Wrapper JAR size: $(wc -c < "$JAR_PATH") bytes"
+          echo "✓ Gradle Wrapper JAR validated successfully"
 
       - name: Verify Gradle Version
         run: ./gradlew --version
