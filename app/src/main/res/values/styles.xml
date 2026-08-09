@@ -50,8 +50,14 @@
 
     <style name="Widget.AIVoiceStudio.Slider" parent="Widget.Material3.Slider">
         <item name="trackHeight">4dp</item>
+        
     </style>
-
+<!-- Base text appearance -->
+<style name="TextAppearance.AIVoiceStudio" parent="TextAppearance.Material3.BodyLarge">
+    <item name="android:textColor">@color/text_primary</item>
+    <item name="android:textSize">14sp</item>
+</style>
+    
     <!-- Text appearances -->
     <style name="TextAppearance.AIVoiceStudio.Headline">
         <item name="android:textColor">@color/text_primary</item>
