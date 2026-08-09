@@ -10,3 +10,7 @@
 local.properties
 node_modules
 dist
+
+# Ensure Gradle wrapper jar is tracked by git
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties

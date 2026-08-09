@@ -25,13 +25,18 @@ jobs:
       - name: Grant Execute Permission for Gradlew
         run: chmod +x gradlew
 
-      - name: Ensure Gradle Wrapper Jar Exists
+      - name: Ensure Valid Gradle Wrapper JAR
         run: |
           mkdir -p gradle/wrapper
-          if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
-            echo "Bootstrapping missing gradle-wrapper.jar..."
-            curl -sSL -o gradle/wrapper/gradle-wrapper.jar https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar
+          JAR_PATH="gradle/wrapper/gradle-wrapper.jar"
+          if [ ! -f "$JAR_PATH" ] || [ $(wc -c < "$JAR_PATH") -lt 10000 ]; then
+            echo "Downloading valid Gradle Wrapper JAR..."
+            curl -sSL -o "$JAR_PATH" https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar
           fi
+          echo "Gradle Wrapper JAR size: $(wc -c < "$JAR_PATH") bytes"
+
+      - name: Verify Gradle Version
+        run: ./gradlew --version
 
       - name: Print Build Diagnostics & UI Resource Integrity
         run: |
